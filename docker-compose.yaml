@@ -1,0 +1,12 @@
+
+version: '3'
+
+services:
+  app:
+    build: .
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: challenge_digital_republic_back
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/home/app
