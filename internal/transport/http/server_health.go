@@ -14,6 +14,5 @@ func (s *server) HealthCheckHandler(c *gin.Context) {
 
 	}
 
-	c.JSON(resp.(domain.CustomerResponse).Code, resp.(domain.CustomerResponse).Response)
-
+	c.JSON(int(resp.(domain.CustomerResponse).Code.Int64), resp.(domain.CustomerResponse).Response)
 }
