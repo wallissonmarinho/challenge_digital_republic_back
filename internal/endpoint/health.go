@@ -9,6 +9,7 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/wallissonmarinho/challenge_digital_republic/internal/domain"
 	"github.com/wallissonmarinho/challenge_digital_republic/internal/service"
+	"gopkg.in/guregu/null.v4"
 )
 
 // makeHealthEndpoint return if service up
@@ -18,7 +19,7 @@ func makeHealthEndpoint(s service.ServiceFactory, logger log.Logger) endpoint.En
 		_ = level.Error(logger).Log("message", "ok")
 
 		return domain.CustomerResponse{
-			Code:     http.StatusOK,
+			Code:     null.IntFrom(http.StatusOK),
 			Response: "Service UP",
 		}, nil
 	}

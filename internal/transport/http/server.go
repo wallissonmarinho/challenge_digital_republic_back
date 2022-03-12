@@ -27,6 +27,7 @@ func NewService(context context.Context, endpoint *endpoint.Endpoints, logger *l
 	r.Use(gin.Recovery())
 
 	r.GET("/health", rest.HealthCheckHandler)
+	r.POST("/pintura", rest.ObterQuantidadeDeLatasdeTinta)
 
 	err := r.Run(":8080")
 	logrus.Error(err)

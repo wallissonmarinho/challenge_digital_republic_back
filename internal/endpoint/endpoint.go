@@ -8,14 +8,14 @@ import (
 
 // Endpoints holds all Go kit endpoints for the Order service.
 type Endpoints struct {
-	Health                 endpoint.Endpoint
-	ObterExemploEndpoint   endpoint.Endpoint
-	InserirExemploEndpoint endpoint.Endpoint
+	Health                                endpoint.Endpoint
+	ObterQuantidadeDeLatasdeTintaEndpoint endpoint.Endpoint
 }
 
 // MakeEndpoints initializes all Go kit endpoints for the Order service.
 func MakeEndpoints(s service.ServiceFactory, logger log.Logger) Endpoints {
 	return Endpoints{
-		Health: makeHealthEndpoint(s, logger),
+		Health:                                makeHealthEndpoint(s, logger),
+		ObterQuantidadeDeLatasdeTintaEndpoint: makeObterQuantidadeDeLatasdeTintaEndpoint(s, logger),
 	}
 }
