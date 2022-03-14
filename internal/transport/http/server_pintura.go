@@ -10,10 +10,7 @@ import (
 func (s *server) ObterQuantidadeDeLatasdeTinta(c *gin.Context) {
 	var parede []domain.Parede
 
-	teste := c.Request.Header
-	logrus.Info(teste)
-
-	err := c.ShouldBind(&parede)
+	err := c.Bind(&parede)
 	if err != nil {
 		_ = level.Error(*s.logger).Log("message", "invalid request")
 	}

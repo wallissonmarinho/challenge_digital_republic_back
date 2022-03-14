@@ -16,12 +16,14 @@ type regraValidarArea struct {
 
 func (r *regraValidarArea) Validate() error {
 
-	if math.Round((r.alturaParede.Float64-r.alturaPorta.Float64)*100)/100 <= float64(0.30) {
-		return errors.New("Altura da parede deve ser 30 centimentros maior que a altura da porta")
-	}
+	if r.totalPortasEJanelas.Float64 > float64(0) {
+		if math.Round(r.totalPortasEJanelas.Float64*100)/100 > math.Round((r.totalParede.Float64/2)*100)/100 {
+			return errors.New("O total de área das portas e janelas deve ser no máximo 50 por cento da área de parede")
+		}
 
-	if math.Round(r.totalPortasEJanelas.Float64*100)/100 > math.Round((r.totalParede.Float64/2)*100)/100 {
-		return errors.New("O total de área das portas e janelas deve ser no máximo 50 por cento da área de parede")
+		if math.Round((r.alturaParede.Float64-r.alturaPorta.Float64)*100)/100 <= float64(0.30) {
+			return errors.New("Altura da parede deve ser 30 centimentros maior que a altura da porta")
+		}
 	}
 
 	if r.totalParede.Float64 < float64(1) {

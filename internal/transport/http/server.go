@@ -23,13 +23,18 @@ func NewService(context context.Context, endpoint *endpoint.Endpoints, logger *l
 	}
 
 	r := gin.New()
+	err := r.SetTrustedProxies(nil)
+	if err != nil {
+		logrus.Error(err)
+	}
+
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
 	r.GET("/health", rest.HealthCheckHandler)
 	r.POST("/pintura", rest.ObterQuantidadeDeLatasdeTinta)
 
-	err := r.Run(":8080")
+	err = r.Run(":8080")
 	logrus.Error(err)
 
 	return r
