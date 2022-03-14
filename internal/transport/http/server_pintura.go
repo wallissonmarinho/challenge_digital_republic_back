@@ -8,14 +8,14 @@ import (
 )
 
 func (s *server) ObterQuantidadeDeLatasdeTinta(c *gin.Context) {
-	var parede []domain.Parede
+	var paredes []domain.Parede
 
-	err := c.Bind(&parede)
+	err := c.Bind(&paredes)
 	if err != nil {
 		_ = level.Error(*s.logger).Log("message", "invalid request")
 	}
 
-	resp, err := s.endpoint.ObterQuantidadeDeLatasdeTintaEndpoint(c, parede)
+	resp, err := s.endpoint.ObterQuantidadeDeLatasdeTintaEndpoint(c, paredes)
 	if err != nil {
 		logrus.Error(err)
 	}
