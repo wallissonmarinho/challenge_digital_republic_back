@@ -24,5 +24,13 @@ func (r *regraValidarArea) Validate() error {
 		return errors.New("O total de área das portas e janelas deve ser no máximo 50 por cento da área de parede")
 	}
 
+	if r.totalParede.Float64 < float64(1) {
+		return errors.New("O total de área da parede não pode ser menor que 1")
+	}
+
+	if r.alturaParede.Float64 > float64(15) {
+		return errors.New("O total de área da parede não pode ser maior que 15")
+	}
+
 	return nil
 }
