@@ -20,6 +20,6 @@ func (s *server) ObterQuantidadeDeLatasdeTinta(c *gin.Context) {
 		logrus.Error(err)
 	}
 
-	c.JSON(int(200), resp.(domain.CustomerResponse).Response)
+	c.JSON(int(resp.(domain.CustomerResponse).Code.Int64), resp.(domain.CustomerResponse).Response)
 
 }
